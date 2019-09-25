@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YcD-xH-9OM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Bob View Controller-->
+        <scene sceneID="IrF-Cx-ccp">
+            <objects>
+                <viewController storyboardIdentifier="Bob" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YcD-xH-9OM" customClass="BobViewController" customModule="ModuleB" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4l0-Md-SUa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Previous Result:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRG-qI-wgG">
+                                <rect key="frame" x="97" y="123" width="181" height="29"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nothing!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hIh-LM-Maj">
+                                <rect key="frame" x="142.5" y="160" width="90" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Please enter some text" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K7H-iS-kIv">
+                                <rect key="frame" x="37.5" y="328.5" width="300" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textEntered:" destination="YcD-xH-9OM" eventType="editingChanged" id="Sg6-Lh-IxJ"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EiE-Wd-83i">
+                                <rect key="frame" x="94" y="376.5" width="187.5" height="41"/>
+                                <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <state key="normal" title="DONE">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="doneButtonPushed:" destination="YcD-xH-9OM" eventType="touchUpInside" id="eSA-86-DD7"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hIh-LM-Maj" firstAttribute="centerX" secondItem="UUo-NK-jNY" secondAttribute="centerX" id="09Q-G2-aSE"/>
+                            <constraint firstItem="EiE-Wd-83i" firstAttribute="top" secondItem="K7H-iS-kIv" secondAttribute="bottom" constant="18" id="1wj-wM-KFe"/>
+                            <constraint firstItem="EiE-Wd-83i" firstAttribute="centerX" secondItem="UUo-NK-jNY" secondAttribute="centerX" id="4oa-lt-EYO"/>
+                            <constraint firstItem="hIh-LM-Maj" firstAttribute="top" secondItem="vRG-qI-wgG" secondAttribute="bottom" constant="8" id="6sJ-hP-GtV"/>
+                            <constraint firstItem="K7H-iS-kIv" firstAttribute="centerY" secondItem="UUo-NK-jNY" secondAttribute="centerY" id="Dz1-9b-kMY"/>
+                            <constraint firstItem="EiE-Wd-83i" firstAttribute="width" secondItem="4l0-Md-SUa" secondAttribute="width" multiplier="0.5" id="HdS-xa-EQ1"/>
+                            <constraint firstItem="vRG-qI-wgG" firstAttribute="centerY" secondItem="UUo-NK-jNY" secondAttribute="centerY" multiplier="0.4" id="JqG-cU-qSp"/>
+                            <constraint firstItem="vRG-qI-wgG" firstAttribute="centerX" secondItem="UUo-NK-jNY" secondAttribute="centerX" id="if9-VP-b5x"/>
+                            <constraint firstItem="K7H-iS-kIv" firstAttribute="width" secondItem="4l0-Md-SUa" secondAttribute="width" multiplier="0.8" id="uxP-PY-VoO"/>
+                            <constraint firstItem="K7H-iS-kIv" firstAttribute="centerX" secondItem="UUo-NK-jNY" secondAttribute="centerX" id="zcK-X1-zNa"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="UUo-NK-jNY"/>
+                    </view>
+                    <connections>
+                        <outlet property="previousResultLabel" destination="hIh-LM-Maj" id="iky-S0-56e"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TYQ-61-Y8F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
