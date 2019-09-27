@@ -9,8 +9,8 @@
 import Foundation
 import ModuleKit
 
-public class ModuleB<ViewControllerPresenter: PresenterProtocol>: CompleteableModuleProtocol
-where ViewControllerPresenter.Presentable == UIViewController {  
+public class ModuleB<ViewControllerPresenter: RouterProtocol>: CompleteableModuleProtocol
+where ViewControllerPresenter.Presentable == UIViewController {
   public typealias Presenter = ViewControllerPresenter
   public typealias Delegate = (String) -> Void
   public typealias Result = String
@@ -27,6 +27,7 @@ where ViewControllerPresenter.Presentable == UIViewController {
       return interactor.delegate
     }
     set {
+      print("ModuleB delegate was set")
       interactor.delegate = newValue
     }
   }

@@ -10,7 +10,7 @@ import Foundation
 import ModuleKit
 import ReSwift
 
-public class ModuleA<ViewControllerPresenter: PresenterProtocol>: CompleteableModuleProtocol
+public class ModuleA<ViewControllerPresenter: RouterProtocol>: CompleteableModuleProtocol
 where ViewControllerPresenter.Presentable == UIViewController {
   public typealias Presenter = ViewControllerPresenter
   public typealias Delegate = (Int) -> Void

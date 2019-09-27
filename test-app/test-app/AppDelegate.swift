@@ -15,21 +15,23 @@ import ModuleKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
-  var presenter: NavigationPresenter!
+  var router: NavigationRouter!
 
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
 
-    self.presenter = NavigationPresenter()
-    presenter.animated = false
+    self.router = NavigationRouter()
+    router.animated = false
     self.window = UIWindow(frame: UIScreen.main.bounds)
-    self.window?.rootViewController = presenter.nav
+    self.window?.rootViewController = router.nav
     self.window?.makeKeyAndVisible()
-    let flow = ModuleA<NavigationPresenter>().goesTo(ModuleB().inputTransformer { "\($0)" })
-    flow.delegate = { input in flow.start(with: self.presenter, and: input) }
-    flow.start(with: presenter, and: "")
-    presenter.animated = true
+    let flow = ModuleA<NavigationRouter>().routesTo(ModuleB().inputTransformer { "\($0)" })
+    flow.delegate = { input in
+      flow.start(with: self.router, and: input)
+    }
+    flow.start(with: router, and: "")
+    router.animated = true
     return true
   }
 
@@ -56,23 +58,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
 
-}
-
-extension AppDelegate {
-  func moduleAReturned(_ num: Int) {
-    print("Number returned from module A: \(num)")
-    let previousResult = "\(num)"
-    let moduleB = ModuleB<NavigationPresenter>()
-    moduleB.delegate = self.moduleBReturned
-    moduleB.start(with: self.presenter, and: previousResult)
-  }
-}
-
-extension AppDelegate {
-  func moduleBReturned(_ text: String) {
-    print("Text returned from module B: \(text)")
-    let moduleA = ModuleA<NavigationPresenter>()
-    moduleA.delegate = self.moduleAReturned
-    moduleA.start(with: self.presenter, and: text)
-  }
 }

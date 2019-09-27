@@ -9,7 +9,7 @@
 import Foundation
 import ModuleKit
 
-class NavigationPresenter: PresenterProtocol {
+class NavigationRouter: RouterProtocol {
   typealias Presentable = UIViewController
   
   let nav: UINavigationController

@@ -15,10 +15,17 @@ where ModuleType: CompleteableModuleProtocol {
   public typealias Presenter = ModuleType.Presenter
   public typealias Dependencies = InputType
   
-  private let module: ModuleType
+  private var module: ModuleType
   private let transformer: (InputType) -> ModuleType.Dependencies
   
-  public var delegate: ModuleType.Delegate?
+  public var delegate: ModuleType.Delegate? {
+    set {
+      module.delegate = newValue
+    }
+    get {
+      return module.delegate
+    }
+  }
   
   public init(module: ModuleType, transformer: @escaping ((InputType) -> ModuleType.Dependencies)) {
     self.module = module

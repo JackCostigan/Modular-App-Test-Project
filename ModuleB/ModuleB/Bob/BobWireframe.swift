@@ -11,7 +11,7 @@
 import UIKit
 import ModuleKit
 
-final class BobWireframe<ViewControllerPresenter: PresenterProtocol>
+final class BobWireframe<ViewControllerPresenter: RouterProtocol>
 where ViewControllerPresenter.Presentable == UIViewController {
   
   // MARK: - Private properties -

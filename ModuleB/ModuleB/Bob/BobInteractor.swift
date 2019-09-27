@@ -11,13 +11,17 @@
 import Foundation
 
 final class BobInteractor {
-  var delegate: ((String) -> Void)? = nil
+  var delegate: ((String) -> Void)? = nil {
+    didSet {
+      print("Interactor delegate was set!")
+    }
+  }
 }
 
 // MARK: - Extensions -
 
 extension BobInteractor: BobInteractorInterface {
   func done(text: String) {
-    delegate?(text)
+    self.delegate?(text)
   }
 }

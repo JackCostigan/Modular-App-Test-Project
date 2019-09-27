@@ -49,7 +49,7 @@ First.Presenter == Second.Presenter {
 }
 
 public extension CompleteableModuleProtocol {
-  func goesTo<NextModule>(_ next: NextModule) -> Flow<Self, NextModule>
+  func routesTo<NextModule>(_ next: NextModule) -> Flow<Self, NextModule>
     where NextModule: CompleteableModuleProtocol, Self.Presenter == NextModule.Presenter {
       return Flow(first: self, second: next)
   }
