@@ -11,11 +11,7 @@
 import Foundation
 
 final class BobInteractor {
-  var delegate: ((String) -> Void)? = nil {
-    didSet {
-      print("Interactor delegate was set!")
-    }
-  }
+  var delegate: ((String) -> Void)? = nil
 }
 
 // MARK: - Extensions -

@@ -27,7 +27,6 @@ where ViewControllerPresenter.Presentable == UIViewController {
       return interactor.delegate
     }
     set {
-      print("ModuleB delegate was set")
       interactor.delegate = newValue
     }
   }
