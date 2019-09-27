@@ -10,6 +10,9 @@
 		84289C60233BBD0E00799F30 /* ModuleKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 84289C5E233BBD0E00799F30 /* ModuleKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84289C68233BBD1900799F30 /* ModuleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84289C66233BBD1900799F30 /* ModuleProtocol.swift */; };
 		84289C69233BBD1900799F30 /* PresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84289C67233BBD1900799F30 /* PresenterProtocol.swift */; };
+		84289C71233E164400799F30 /* CompleteableModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84289C70233E164400799F30 /* CompleteableModule.swift */; };
+		84289C73233E165600799F30 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84289C72233E165600799F30 /* Flow.swift */; };
+		84289C75233E173200799F30 /* ModuleTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84289C74233E173200799F30 /* ModuleTransformer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +21,9 @@
 		84289C5F233BBD0E00799F30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84289C66233BBD1900799F30 /* ModuleProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleProtocol.swift; sourceTree = "<group>"; };
 		84289C67233BBD1900799F30 /* PresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresenterProtocol.swift; sourceTree = "<group>"; };
+		84289C70233E164400799F30 /* CompleteableModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteableModule.swift; sourceTree = "<group>"; };
+		84289C72233E165600799F30 /* Flow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flow.swift; sourceTree = "<group>"; };
+		84289C74233E173200799F30 /* ModuleTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTransformer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +59,9 @@
 				84289C5E233BBD0E00799F30 /* ModuleKit.h */,
 				84289C67233BBD1900799F30 /* PresenterProtocol.swift */,
 				84289C66233BBD1900799F30 /* ModuleProtocol.swift */,
+				84289C70233E164400799F30 /* CompleteableModule.swift */,
+				84289C72233E165600799F30 /* Flow.swift */,
+				84289C74233E173200799F30 /* ModuleTransformer.swift */,
 				84289C5F233BBD0E00799F30 /* Info.plist */,
 			);
 			path = ModuleKit;
@@ -137,7 +146,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				84289C69233BBD1900799F30 /* PresenterProtocol.swift in Sources */,
+				84289C73233E165600799F30 /* Flow.swift in Sources */,
+				84289C75233E173200799F30 /* ModuleTransformer.swift in Sources */,
 				84289C68233BBD1900799F30 /* ModuleProtocol.swift in Sources */,
+				84289C71233E164400799F30 /* CompleteableModule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

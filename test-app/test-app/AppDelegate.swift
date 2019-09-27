@@ -9,6 +9,7 @@
 import UIKit
 import ModuleA
 import ModuleB
+import ModuleKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,14 +20,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
-    let moduleA = ModuleA<NavigationPresenter>()
-    moduleA.delegate = self.moduleAReturned
+
     self.presenter = NavigationPresenter()
     presenter.animated = false
     self.window = UIWindow(frame: UIScreen.main.bounds)
     self.window?.rootViewController = presenter.nav
     self.window?.makeKeyAndVisible()
-    moduleA.start(with: presenter, and: "")
+    let flow = ModuleA<NavigationPresenter>().goesTo(ModuleB().inputTransformer { "\($0)" })
+    flow.delegate = { input in flow.start(with: self.presenter, and: input) }
+    flow.start(with: presenter, and: "")
     presenter.animated = true
     return true
   }
