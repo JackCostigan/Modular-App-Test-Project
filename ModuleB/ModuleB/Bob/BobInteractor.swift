@@ -11,13 +11,13 @@
 import Foundation
 
 final class BobInteractor {
-  var delegate: BobInteractorInterface? = nil
+  var delegate: ((String) -> Void)? = nil
 }
 
 // MARK: - Extensions -
 
 extension BobInteractor: BobInteractorInterface {
   func done(text: String) {
-    delegate?.done(text: text)
+    delegate?(text)
   }
 }

@@ -10,38 +10,40 @@ import Foundation
 import ModuleKit
 import ReSwift
 
-public class ModuleA<ViewControllerPresenter: PresenterProtocol>: ModuleProtocol
+public class ModuleA<ViewControllerPresenter: PresenterProtocol>: CompleteableModuleProtocol
 where ViewControllerPresenter.Presentable == UIViewController {
   public typealias Presenter = ViewControllerPresenter
-  public typealias Delegate = ModuleADelegate
+  public typealias Delegate = (Int) -> Void
+  public typealias Result = Int
+  public typealias Dependencies = String
   
-  let store: Store<Alice.State>
   let storyboard: UIStoryboard
   let delegateHandler: Alice.DelegateHandler
   
-  public convenience init(text: String = "") {
+  public convenience init() {
     let delegateHandler = Alice.DelegateHandler()
-    let store = Store<Alice.State>(reducer: Alice.reducer, state: Alice.State(text: text), middleware: [delegateHandler.middleware])
     let storyboard = UIStoryboard(name: "Alice", bundle: Bundle(for: AliceViewController.self))
-    self.init(store: store, storyboard: storyboard, delegateHandler: delegateHandler)
+    self.init(storyboard: storyboard, delegateHandler: delegateHandler)
   }
   
   // I would like to make this initializer public, with default parameters for
   // each value, but to do that I have to expose Alice.State, which maybe is fine?
   // For now I'm trying to avoid exposing any of the Redux abstractions.
-  init(store: Store<Alice.State>, storyboard: UIStoryboard, delegateHandler: Alice.DelegateHandler) {
-    self.store = store
+  init(storyboard: UIStoryboard, delegateHandler: Alice.DelegateHandler) {
     self.storyboard = storyboard
     self.delegateHandler = delegateHandler
   }
   
-  public func start(with presenter: ViewControllerPresenter) {
+  public func start(with presenter: ViewControllerPresenter, and text: Dependencies) {
+    let store = Store<Alice.State>(reducer: Alice.reducer,
+                                   state: Alice.State(text: text),
+                                   middleware: [delegateHandler.middleware])
     let vc = storyboard.instantiateViewController(withIdentifier: AliceViewController.identifier) as! AliceViewController
     vc.store = store
     presenter.present(vc)
   }
   
-  public weak var delegate: ModuleADelegate? {
+  public var delegate: Delegate? {
     get {
       return self.delegateHandler.delegate
     }

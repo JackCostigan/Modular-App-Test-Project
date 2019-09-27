@@ -9,20 +9,20 @@
 import Foundation
 import ModuleKit
 
-public class ModuleB<ViewControllerPresenter: PresenterProtocol>: ModuleProtocol
-where ViewControllerPresenter.Presentable == UIViewController {
+public class ModuleB<ViewControllerPresenter: PresenterProtocol>: CompleteableModuleProtocol
+where ViewControllerPresenter.Presentable == UIViewController {  
   public typealias Presenter = ViewControllerPresenter
-  public typealias Delegate = BobInteractorInterface
+  public typealias Delegate = (String) -> Void
+  public typealias Result = String
+  public typealias Dependencies = String
   
   private let interactor: BobInteractor
-  private let previousResult: String
   
-  public init(previousResult: String) {
+  public init() {
     self.interactor = BobInteractor()
-    self.previousResult = previousResult
   }
   
-  public var delegate: BobInteractorInterface? {
+  public var delegate: ((String) -> Void)? {
     get {
       return interactor.delegate
     }
@@ -31,7 +31,7 @@ where ViewControllerPresenter.Presentable == UIViewController {
     }
   }
   
-  public func start(with presenter: ViewControllerPresenter) {
+  public func start(with presenter: ViewControllerPresenter, and previousResult: String) {
     let _ = BobWireframe(interactor: interactor,
                          viewControllerPresenter: presenter,
                          previousResult: previousResult)

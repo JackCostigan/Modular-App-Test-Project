@@ -11,7 +11,7 @@ import ReSwift
 
 extension Alice {
   class DelegateHandler {
-    weak var delegate: ModuleADelegate? = nil
+    var delegate: ((Int) -> Void)? = nil
     
     lazy var middleware: Middleware<Alice.State> = { dispatch, getState in
       return { next in
@@ -22,7 +22,7 @@ extension Alice {
             else { return next(action) }
           switch aliceAction {
           case .doneButtonPushed:
-            self.delegate?.numberReturned(value)
+            self.delegate?(value)
           default:
             break
           }

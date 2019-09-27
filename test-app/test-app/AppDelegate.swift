@@ -20,13 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
     let moduleA = ModuleA<NavigationPresenter>()
-    moduleA.delegate = self
+    moduleA.delegate = self.moduleAReturned
     self.presenter = NavigationPresenter()
     presenter.animated = false
     self.window = UIWindow(frame: UIScreen.main.bounds)
     self.window?.rootViewController = presenter.nav
     self.window?.makeKeyAndVisible()
-    moduleA.start(with: presenter)
+    moduleA.start(with: presenter, and: "")
     presenter.animated = true
     return true
   }
@@ -56,21 +56,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
-extension AppDelegate: ModuleADelegate {
-  func numberReturned(_ num: Int) {
+extension AppDelegate {
+  func moduleAReturned(_ num: Int) {
     print("Number returned from module A: \(num)")
     let previousResult = "\(num)"
-    let moduleB = ModuleB<NavigationPresenter>(previousResult: previousResult)
-    moduleB.delegate = self
-    moduleB.start(with: self.presenter)
+    let moduleB = ModuleB<NavigationPresenter>()
+    moduleB.delegate = self.moduleBReturned
+    moduleB.start(with: self.presenter, and: previousResult)
   }
 }
 
-extension AppDelegate: BobInteractorInterface {
-  func done(text: String) {
+extension AppDelegate {
+  func moduleBReturned(_ text: String) {
     print("Text returned from module B: \(text)")
-    let moduleA = ModuleA<NavigationPresenter>(text: text)
-    moduleA.delegate = self
-    moduleA.start(with: self.presenter)
+    let moduleA = ModuleA<NavigationPresenter>()
+    moduleA.delegate = self.moduleAReturned
+    moduleA.start(with: self.presenter, and: text)
   }
 }
